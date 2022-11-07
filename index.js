@@ -255,6 +255,28 @@ app.get("/api/cliente/listar/:id", (req,res)=>{
   })
 })
 
+app.post("/api/publihall/cadastro", async(req,res)=>{
+  connection.query("INSERT INTO HallPet SET ?", [req.body], (erro, result) => {
+    if (erro) {
+      return res
+        .status(400)
+        .send({ output: `Erro ao tentar cadastrar -> ${erro}` });
+    }
+    res.status(201).send({ output: `Cadastro realizado`, payload: result });
+  });
+});
+
+app.get("/api/hallPet/listar", (req,res)=>{
+  connection.query("Select * From HallPet", (erro, result)=>{
+      if(erro){
+          return res
+          .status(400)
+          .send({output:`Erro ao tentar carregar dados ->${erro}`});
+      }
+      res.status(200).send({output:result})
+  });
+});
+
 app.get("/", async (req,res)=>{
     res.send("Pagina on");
 });
