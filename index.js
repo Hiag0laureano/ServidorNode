@@ -433,7 +433,7 @@ function criarToken(id, usuario, email) {
         connection.query(
           "INSERT INTO  Endereco set tipo = ?, logradouro = ?, numero = ?, complemento = ?, cep = ?, bairro = ?, cidade = ?, estado = ? ",
           [req.body.tipo,req.body.logradouro,req.body.numero,req.body.complemento,req.body.cep,req.body.bairro,req.body.cidade,req.body.estado, req.body.idEndereco],
-          async (erro, result) => {
+          async (erro, resulten) => {
             if (erro) {
               return res
                 .status(400)
